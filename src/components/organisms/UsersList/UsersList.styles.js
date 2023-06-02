@@ -10,5 +10,6 @@ export const Wrapper = styled.div`
 `;
 
 export const StyledTitle = styled.h1`
+  margin-bottom: 10px;
   color: ${({ theme }) => theme.color.black};
 `;
