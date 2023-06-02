@@ -8,3 +8,7 @@ export const Wrapper = styled.div`
   border-radius: 25px;
   box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
 `;
+
+export const StyledTitle = styled.h1`
+  color: ${({ theme }) => theme.color.black};
+`;
