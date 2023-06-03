@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.button`
+export const Wrapper = styled.button`
   border: none;
   display: flex;
   align-items: center;
