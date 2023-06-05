@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { UserShape } from 'types';
+import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
+import Title from 'components/atoms/Title/Title';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
-import { StyledTitle, Wrapper } from './UsersList.styles';
-import FormField from 'components/molecules/FormField/FormField';
-import { Button } from 'components/atoms/Button/Button';
 
 const UsersList = ({ users, deleteUser }) => {
   return (
     <>
-      <Wrapper>
-        <StyledTitle>Students list</StyledTitle>
+      <ViewWrapper>
+        <Title>Students list</Title>
         <ul>
           {users.map((userData) => (
             <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />
           ))}
         </ul>
-      </Wrapper>
+      </ViewWrapper>
     </>
   );
+};
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape(UserShape)),
+  deleteUser: PropTypes.func,
 };
 
 export default UsersList;

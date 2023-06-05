@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -28,7 +28,9 @@ export const NavWrapper = styled.nav`
   text-align: right;
 `;
 
-export const StyledLink = styled(Link)`
+const activeClassName = 'active-link';
+
+export const StyledLink = styled(NavLink).attrs({ activeClassName })`
   margin-bottom: 15px;
   font-weight: bold;
   cursor: pointer;
@@ -36,8 +38,28 @@ export const StyledLink = styled(Link)`
   font-size: ${({ theme }) => theme.fontSize.m};
   text-decoration: none;
   outline: none;
+  position: relative;
 
   &:visited {
     color: ${({ theme }) => theme.color.black};
+  }
+
+  &.${activeClassName} {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::after {
+    opacity: 0;
+    transition: 0.4s;
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -20px;
+    background-color: ${({ theme }) => theme.color.grey};
   }
 `;

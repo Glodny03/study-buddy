@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { users as usersData } from 'data/users';
-import UsersList from 'components/organisms/UsersList/UsersList';
-import Form from 'components/organisms/Form/Form';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
 import Navigation from 'components/organisms/Navigation/Navigation';
+import Dashboard from './Dashboard';
+import AddUser from './AddUser';
 
 const googleFont = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap';
 
@@ -57,10 +57,10 @@ const Root = () => {
         <Wrapper>
           <Switch>
             <Route path="/add-user">
-              <Form formValues={formValues} handleAddUser={handleAddUser} handleInputChange={handleInputChange} />
+              <AddUser formValues={formValues} handleAddUser={handleAddUser} handleInputChange={handleInputChange} />
             </Route>
             <Route path="/">
-              <UsersList deleteUser={deleteUser} users={users} />
+              <Dashboard deleteUser={deleteUser} users={users} />
             </Route>
           </Switch>
         </Wrapper>

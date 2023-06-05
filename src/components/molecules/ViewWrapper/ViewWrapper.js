@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const ViewWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.white};
   width: 100%;
   max-width: 500px;
