@@ -5,14 +5,14 @@ import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 import Title from 'components/atoms/Title/Title';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 
-const UsersList = ({ users, deleteUser }) => {
+const UsersList = ({ users }) => {
   return (
     <>
       <ViewWrapper>
         <Title>Students list</Title>
         <ul>
           {users.map((userData) => (
-            <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />
+            <UsersListItem key={userData.name} userData={userData} />
           ))}
         </ul>
       </ViewWrapper>
