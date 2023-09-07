@@ -1,11 +1,18 @@
-import React from 'react';
-import deleteIcon from 'assets/icons/delete-icon.png';
-import { StyledButton } from './Button.styles';
+import styled from 'styled-components';
 
-const Button = (props) => (
-  <StyledButton {...props}>
-    <img src={deleteIcon} alt={deleteIcon} />
-  </StyledButton>
-);
+export const Button = styled.button`
+  font-size: ${({ theme }) => theme.fontSize.s};
+  background-color: ${({ theme }) => theme.colors.lightPurple};
+  color: ${({ theme }) => theme.colors.darkGrey};
+  margin: 15px 0;
+  padding: 7px 20px;
+  border-radius: 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s;
 
-export default Button;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.darkPurple};
+  }
+`;

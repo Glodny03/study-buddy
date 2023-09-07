@@ -8,6 +8,8 @@ export const theme = {
     success: '#8FCB81',
     error: '#FF8383',
     warning: '#E1D888',
+    darkPurple: '#C0C7D6',
+    lightPurple: '#ECEEF7',
   },
   fontSize: {
     xxl: '34px',
