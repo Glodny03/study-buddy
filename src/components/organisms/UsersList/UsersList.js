@@ -5,14 +5,14 @@ import { Wrapper } from 'components/atoms/Wrapper/Wrapper';
 import PropTypes from 'prop-types';
 import { UserShape } from 'types';
 
-const UsersList = ({ deleteUser, users }) => {
+const UsersList = ({ users }) => {
   return (
     <>
       <Wrapper>
         <Title>Students list</Title>
         <ul>
           {users.map((userData) => (
-            <UsersListItem deleteUser={deleteUser} key={userData.name} userData={userData} />
+            <UsersListItem key={userData.name} userData={userData} />
           ))}
         </ul>
       </Wrapper>

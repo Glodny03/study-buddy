@@ -1,10 +1,12 @@
+import React, { useContext } from 'react';
 import UsersList from 'components/organisms/UsersList/UsersList';
-import React from 'react';
+import { UsersContext } from 'providers/UsersProvider';
 
-const Dashboard = ({ users, deleteUser }) => {
+const Dashboard = () => {
+  const { users } = useContext(UsersContext);
   return (
     <>
-      <UsersList deleteUser={deleteUser} users={users} />
+      <UsersList users={users} />
     </>
   );
 };
