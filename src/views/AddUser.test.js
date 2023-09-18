@@ -11,7 +11,7 @@ describe('Form Field', () => {
       <>
         <AddUser />
         <Dashboard />
-      </>
+      </>,
     );
     fireEvent.change(screen.getByTestId('Name'), { target: { value: 'Zbyszek' } });
     fireEvent.change(screen.getByTestId('Attendance'), { target: { value: '55%' } });
