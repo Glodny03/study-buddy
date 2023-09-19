@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Label } from 'components/atoms/Label/Label';
@@ -22,7 +22,6 @@ const FormField = React.forwardRef(({ onChange, value, label, name, id, type = '
     </Wrapper>
   );
 });
-
 
 FormField.propTypes = {
   label: PropTypes.string.isRequired,

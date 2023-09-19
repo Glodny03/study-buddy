@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useReducer, useRef } from 'react';
+import React, { useContext } from 'react';
 import FormField from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 import { Title } from 'components/atoms/Title/Title';
 import { Wrapper } from 'components/atoms/Wrapper/Wrapper';
 import { UsersContext } from 'providers/UsersProvider';
+import { useForm } from 'hooks/useForm';
 
 const initialFormState = {
   name: '',
@@ -13,63 +14,17 @@ const initialFormState = {
   error: '',
 };
 
-const actionTypes = {
-  inputChange: 'INPUT_CHANGE',
-  clearValues: 'CLEAR_VALUES',
-  consentToggle: 'CONSENT_TOGGLE',
-  throwError: 'THROW_ERROR',
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case actionTypes.inputChange:
-      return {
-        ...state,
-        [action.field]: action.value,
-      };
-    case actionTypes.clearValues:
-      return initialFormState;
-    case actionTypes.consentToggle:
-      return {
-        ...state,
-        consent: !state.consent,
-      };
-    case actionTypes.throwError:
-      return {
-        ...state,
-        error: action.errorValue,
-      };
-    default:
-      return state;
-  }
-};
-
 const AddUser = () => {
-  const [formValues, dispatch] = useReducer(reducer, initialFormState);
   const { handleAddUser } = useContext(UsersContext);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.focus();
-    }
-  }, []);
-
-  const handleInputChange = (e) => {
-    dispatch({
-      type: actionTypes.inputChange,
-      field: e.target.name,
-      value: e.target.value,
-    });
-  };
+  const { formValues, handleInputChange, handleClearForm, handleThrowError, handleToggleConsent } = useForm(initialFormState);
 
   const handleSubmitUser = (e) => {
     e.preventDefault();
     if (formValues.consent) {
       handleAddUser(formValues);
-      dispatch({ type: actionTypes.clearValues });
+      handleClearForm(initialFormState);
     } else {
-      dispatch({ type: actionTypes.throwError, errorValue: 'You need to give consent!' });
+      handleThrowError('You neet to give consent');
     }
   };
 
@@ -77,20 +32,11 @@ const AddUser = () => {
     <>
       <Wrapper as="form" onSubmit={handleSubmitUser}>
         <Title>Add new student</Title>
-        <FormField  ref={ref} label="Name" id="name" name="name" value={formValues.name} onChange={handleInputChange} />
+        <FormField label="Name" id="name" name="name" value={formValues.name} onChange={handleInputChange} />
         <FormField label="Attendance" id="attendance" name="attendance" value={formValues.attendance} onChange={handleInputChange} />
         <FormField label="Average" id="average" name="average" value={formValues.average} onChange={handleInputChange} />
-        <FormField
-          label="Consent"
-          id="consent"
-          name="consent"
-          type="checkbox"
-          value={formValues.consent}
-          onChange={() => dispatch({ type: actionTypes.consentToggle })}
-        />
-        <Button  type="submit">
-          Add
-        </Button>
+        <FormField label="Consent" id="consent" name="consent" type="checkbox" value={formValues.consent} onChange={handleToggleConsent} />
+        <Button type="submit">Add</Button>
         {formValues.error ? <p>{formValues.error}</p> : null}
       </Wrapper>
     </>
