@@ -5,10 +5,10 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/globalStyle';
 import { theme } from 'assets/styles/theme';
 import { Wrapper } from './Root.styles';
-import Navigation from 'components/organisms/Navigation/Navigation';
 import Dashboard from './Dashboard';
 import AddUser from './AddUser';
 import UsersProvider from 'providers/UsersProvider';
+import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 
 const Root = () => {
   return (
@@ -16,13 +16,14 @@ const Root = () => {
       <GlobalStyle />
       <UsersProvider>
         <Router>
-          <Wrapper>
-            <Navigation />
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/add-user" element={<AddUser />} />
-            </Routes>
-          </Wrapper>
+          <MainTemplate>
+            <Wrapper>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/add-user" element={<AddUser />} />
+              </Routes>
+            </Wrapper>
+          </MainTemplate>
         </Router>
       </UsersProvider>
     </ThemeProvider>

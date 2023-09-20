@@ -1,56 +1,62 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const StyledNavigation = styled.nav`
-  background-color: ${({ theme }) => theme.colors.lightGrey};
-  width: 109px;
+export const Wrapper = styled.nav`
+  width: 100%;
   height: 100%;
-  border-right: 1px solid ${({ theme }) => theme.colors.darkGrey};
-  position: fixed;
-  left: 0;
-  top: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid ${({ theme }) => theme.colors.darkPurple};
+  justify-content: flex-start;
+  padding: 30px 0;
+  grid-row: 1 / 3;
+  grid-column: 1 / 1;
 `;
 
-export const StyledLogo = styled.div`
+export const Logo = styled.div`
   background-color: ${({ theme }) => theme.colors.darkGrey};
-  cursor: pointer;
-  & p {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 30px;
+
+  h1 {
+    font-size: 18px;
     color: ${({ theme }) => theme.colors.white};
-    font-weight: bold;
     text-align: right;
-    letter-spacing: 0.4px;
-    margin: 19px 0;
-    padding: 15px;
+    margin-right: 20px;
   }
 `;
 
-export const StyledList = styled.ul`
-  padding: 0 15px;
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  text-align: right;
-`;
+const activeClassName = 'active';
 
-const activeclassname = 'active';
-export const StyledLink = styled(NavLink).attrs({ activeclassname })`
-  text-decoration: none;
+export const StyledLink = styled(NavLink).attrs({ activeClassName })`
   font-weight: bold;
-  margin: 5px 0;
+  text-decoration: none;
   color: ${({ theme }) => theme.colors.darkGrey};
   font-size: ${({ theme }) => theme.fontSize.m};
+  text-align: right;
+  margin: 5px 20px 5px auto;
+  position: relative;
 
-  &.active {
-    position: relative;
-
+  &.${activeClassName} {
     &::after {
-      content: '';
-      position: absolute;
-      width: 12px;
-      height: 2px;
-      top: 50%;
-      right: -15px;
-      background-color: ${({ theme }) => theme.colors.darkPurple};
+      opacity: 1;
     }
+  }
+
+  &::after {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -20px;
+    background-color: ${({ theme }) => theme.colors.darkPurple};
   }
 `;
