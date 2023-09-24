@@ -32,7 +32,7 @@ const NewsSection = () => {
           headers: {
             authorization: `Bearer ${process.env.REACT_APP_DATOCMS_TOKEN}`,
           },
-        }
+        },
       )
       .then(({ data: { data } }) => {
         setArticles(data.allArticles);
